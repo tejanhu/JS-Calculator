@@ -22,6 +22,11 @@ button{
     cursor: pointer;
 }
 
+.calculator-options div{
+    display: flex;
+    flex-direction: row;
+}
+
 .calculator-options button{
     border-radius: 50em;
     height: 3em;
