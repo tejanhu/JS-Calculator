@@ -1,0 +1,48 @@
+.container{
+    display: flex;
+   justify-content: center;
+}
+
+/* .calculator-frame{
+    display: flex;
+} */
+
+.display{
+    display: flex;
+    background-color: rgb(37, 37, 37);
+    height: 12em;
+    width: 48em;
+}
+
+hr{
+    color: rgb(199, 199, 199);;
+}
+
+button{
+    cursor: pointer;
+}
+
+.calculator-options button{
+    border-radius: 50em;
+    height: 3em;
+    width: 2.5em;
+    background-color: rgb(50, 49, 49);
+    color: white;
+}
+
+.calculator-options .clear{
+    color: rgb(234, 100, 100);
+}
+
+.calculator-options .operator{
+    color: rgb(47, 133, 47);
+}
+
+.calculator-options #equals{
+    color: white;
+    background-color: rgb(47, 133, 47);
+}
+
+.calculator-options #plus-slash-minus{
+    color: white;
+}
