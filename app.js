@@ -1,4 +1,5 @@
 var result;
+var display_screen = document.getElementById("display");
 
 function add(first_num, second_num){
     result = first_num + second_num;
@@ -37,5 +38,12 @@ function operate(operator, first_num, second_num){
             return divide(first_num, second_num);
         case "%":
             return mod(first_num, second_num);
+    }
+}
+
+// WIP - whichever buttons is clicked will display on the display 
+function populateDisplay(){
+    if(numBtns){
+        display_screen.textContent = numBtns.value;
     }
 }
