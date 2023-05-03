@@ -46,3 +46,8 @@ button{
 .calculator-options #plus-slash-minus{
     color: white;
 }
+
+.backspace{
+    background-color: rgb(29, 28, 28);
+    color: rgb(47, 133, 47);
+}
