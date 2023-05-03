@@ -43,7 +43,7 @@ function operate(operator, first_num, second_num){
 
 // WIP - whichever buttons is clicked will display on the display 
 function populateDisplay(){
-    if(numBtns){
-        display_screen.textContent = numBtns.value;
-    }
+    // if(numBtns){
+    //     display_screen.textContent = numBtns.value;
+    // }
 }
