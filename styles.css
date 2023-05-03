@@ -11,7 +11,8 @@
     display: flex;
     background-color: rgb(37, 37, 37);
     height: 12em;
-    width: 48em;
+    width: 52em;
+    margin-bottom: 1.5em;
 }
 
 hr{
@@ -20,18 +21,28 @@ hr{
 
 button{
     cursor: pointer;
+    height: 3em;
+    width: 3em;
+    font-size: larger;
 }
 
+
+.calculator-options{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2em;
+}
 .calculator-options div{
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    /* gap: 0.2em; */
 }
 
 .calculator-options button{
     border-radius: 50em;
-    height: 3em;
-    width: 2.5em;
-    background-color: rgb(50, 49, 49);
+    background-color: rgb(67, 66, 66);
     color: white;
 }
 
@@ -39,7 +50,7 @@ button{
     color: rgb(234, 100, 100);
 }
 
-.calculator-options .operator{
+.calculator-options .operator, .calculator-options .brackets{
     color: rgb(47, 133, 47);
 }
 
@@ -50,6 +61,12 @@ button{
 
 .calculator-options #plus-slash-minus{
     color: white;
+}
+
+.backspace-container{
+    display: flex;
+    justify-content: right;
+    gap:12em;
 }
 
 .backspace{
