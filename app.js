@@ -1,8 +1,8 @@
-// var result;
 var display_first_res = document.querySelector(".first-res");
 var display_present_res = document.querySelector(".present-res");
 var numBtns = document.querySelectorAll(".digit");
 var operatorBtns = document.querySelectorAll(".operator");
+var equals_btn = document.querySelector("#equals");
 var clear_btn = document.querySelector(".clear");
 var first_num = null;
 var present_num = '';
@@ -22,14 +22,6 @@ function retrieveDigit(num){
 }
 
 
-// function handleClick() {
-//   first_num = this.textContent;
-//   display_screen.textContent += first_num;
-//   display_screen.style.color = "white";
-//   return first_num;
-// }
-
-
 operatorBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         retrieveOperator(e.target.textContent);
@@ -37,15 +29,15 @@ operatorBtns.forEach(btn => {
   });
 
 function retrieveOperator(op){
-    if(op == "=" && (first_num == null)){
-        operatorBtns[6].setAttribute("disabled", "disabled");
-    }
     // If no operator has been used, that means we're still dealing with the first number
     if(operator == null){
         first_num = present_num + " " ;
         console.log(first_num);
     } else if(present_num != null){ // Otherwise it means we're dealing with the next number
-            first_num = operate(operator, first_num, present_num);    
+            first_num = operate(operator, first_num, present_num); 
+            if(operator.includes("=")){
+                display_first_res.textContent = first_num;
+            }   
     }
       
       display_first_res.textContent = first_num;
@@ -56,12 +48,28 @@ function retrieveOperator(op){
     //   display_present_res.innerHTML = "0";
   }
 
-// function handleOperatorClick() {
-//   operator = this.textContent;
-//   display_screen.textContent += operator;
-//   display_screen.style.color = "rgb(47, 133, 47)";
-//   return operator;
-// }
+//   equals_btn.addEventListener("click", function(){
+//     if(display_first_res.textContent === null && first_num === null){
+//         equals_btn.disabled = true;
+//         display.textContent = 0;
+//     }
+//     else{
+//         equals_btn.disabled = false;
+//     }
+//   });
+
+  equals_btn.addEventListener("click", function () {
+
+    if (display_first_res !== null && first_num !== null && operatorBtns !== "") {
+        equals_btn.disabled = false;
+        retrieveOperator();
+    }else{
+        equals_btn.disabled = true;
+        // clear_btn.click();
+        alert("Invalid operation. Please try again");
+    }
+});
+
 
 function operate(operator, first_num, second_num){
     switch(operator){
@@ -99,7 +107,6 @@ function divide(first_num, second_num){
     }else{
         result = first_num / second_num;
     }
-    
     return result;
 }
 
@@ -115,16 +122,3 @@ clear_btn.addEventListener("click", function(){
     display_present_res.innerHTML = "";
 });
 
-
-
-// WIP - whichever buttons is clicked will display on the display 
-// function populateDisplay(){
-//     numBtns.forEach(btn => {
-//         btn.addEventListener("click", function(e){
-//             display_screen.textContent += btn.innerHTML;
-//             // console.log(val);
-//         });
-//     });
-// }
-
-// populateDisplay();
