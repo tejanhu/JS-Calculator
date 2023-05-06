@@ -35,9 +35,6 @@ function retrieveOperator(op){
         console.log(first_num);
     } else if(present_num != null){ // Otherwise it means we're dealing with the next number
             first_num = operate(operator, first_num, present_num); 
-            if(operator.includes("=")){
-                display_first_res.textContent = first_num;
-            }   
     }
       
       display_first_res.textContent = first_num;
