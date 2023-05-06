@@ -1,13 +1,12 @@
-var result;
+// var result;
 var display_first_res = document.querySelector(".first-res");
 var display_present_res = document.querySelector(".present-res");
 var numBtns = document.querySelectorAll(".digit");
-var equalsBtn = document.querySelector("#equals");
 var operatorBtns = document.querySelectorAll(".operator");
-var first_num = 0;
-var present_num = null;
+var clear_btn = document.querySelector(".clear");
+var first_num = null;
+var present_num = '';
 var operator = null;
-var calculation = 0;
 
 numBtns.forEach(btn => {
   btn.addEventListener('click', (e) => {
@@ -38,34 +37,24 @@ operatorBtns.forEach(btn => {
   });
 
 function retrieveOperator(op){
+    if(op == "=" && (first_num == null)){
+        operatorBtns[6].setAttribute("disabled", "disabled");
+    }
     // If no operator has been used, that means we're still dealing with the first number
     if(operator == null){
-        first_num = present_num;
+        first_num = present_num + " " ;
         console.log(first_num);
     } else if(present_num != null){ // Otherwise it means we're dealing with the next number
-        first_num = operate(operator, first_num, present_num);
-        console.log(first_num);
+            first_num = operate(operator, first_num, present_num);    
     }
       
+      display_first_res.textContent = first_num;
       display_first_res.textContent = first_num + ' ' + op;
       operator = op;
       present_num = '';
-      calculation = first_num;
       console.log(first_num);
-    //   return calculation;
     //   display_present_res.innerHTML = "0";
   }
-
-//   equalsBtn.addEventListener('click', (e) => {
-//         calculate(event.target.textContent);
-//     } );
-
-//   function calculate(){
-
-
-
-//     return calculation;
-//   }
 
 // function handleOperatorClick() {
 //   operator = this.textContent;
@@ -74,6 +63,20 @@ function retrieveOperator(op){
 //   return operator;
 // }
 
+function operate(operator, first_num, second_num){
+    switch(operator){
+        case "+":
+            return add(first_num, second_num);
+        case "-":
+            return subtract(first_num, second_num);
+        case "*":
+            return multiply(first_num, second_num);
+        case "/":
+            return divide(first_num, second_num);
+        case "%":
+            return mod(first_num, second_num);
+    }
+}
 
 function add(first_num, second_num){
     result = first_num + second_num;
@@ -105,20 +108,14 @@ function mod(first_num, second_num){
     return result;
 }
 
-function operate(operator, first_num, second_num){
-    switch(operator){
-        case "+":
-            return add(first_num, second_num);
-        case "-":
-            return subtract(first_num, second_num);
-        case "*":
-            return multiply(first_num, second_num);
-        case "/":
-            return divide(first_num, second_num);
-        case "%":
-            return mod(first_num, second_num);
-    }
-}
+clear_btn.addEventListener("click", function(){
+    first_num = null;
+    present_num = null;
+    display_first_res.innerHTML = "";
+    display_present_res.innerHTML = "";
+});
+
+
 
 // WIP - whichever buttons is clicked will display on the display 
 // function populateDisplay(){
