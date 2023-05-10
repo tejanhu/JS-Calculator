@@ -126,6 +126,8 @@ function mod(first_num, second_num){
 clear_btn.addEventListener("click", function(){
     first_num = null;
     present_num = null;
+    operator = null;
+    result = null;
     display_first_res.innerHTML = "";
     display_present_res.innerHTML = "";
 });
