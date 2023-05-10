@@ -1,6 +1,7 @@
 var display_first_res = document.querySelector(".first-res");
 var display_present_res = document.querySelector(".present-res");
 var numBtns = document.querySelectorAll(".digit");
+var back_space_btn = document.querySelector(".backspace");
 var operator_btns = document.querySelectorAll(".operator");
 var equals_btn = document.querySelector("#equals");
 var clear_btn = document.querySelector(".clear");
@@ -122,6 +123,12 @@ function mod(first_num, second_num){
     result = first_num % second_num;
     return result;
 }
+
+back_space_btn.addEventListener("click", function(){
+    var value = display_first_res.textContent;
+    present_num = value.substr(0, value.length - 1);
+    display_first_res.textContent = present_num;
+});
 
 clear_btn.addEventListener("click", function(){
     first_num = null;
