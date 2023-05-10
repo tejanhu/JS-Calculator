@@ -5,10 +5,25 @@ var back_space_btn = document.querySelector(".backspace");
 var operator_btns = document.querySelectorAll(".operator");
 var equals_btn = document.querySelector("#equals");
 var clear_btn = document.querySelector(".clear");
+var dec_btn = document.querySelector(".decimal");
+var brackets_btn = document.querySelector(".brackets");
+var pos_neg_sign_btn = document.querySelector("#plus-slash-minus");
 var first_num = null;
 var present_num = '';
 var operator = null;
 var result;
+
+dec_btn.addEventListener('click', function(){
+    alert("Decimal Functionality Coming Soon!");
+});
+
+brackets_btn.addEventListener('click', function(){
+    alert("Brackets Functionality Coming Soon!");
+});
+
+pos_neg_sign_btn.addEventListener('click', function(){
+    alert("Pos/Neg Sign Functionality Coming Soon!");
+});
 
 numBtns.forEach(btn => {
   btn.addEventListener('click', (e) => {
