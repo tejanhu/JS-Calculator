@@ -69,10 +69,12 @@ function retrieveOperator(op){
     if(operator === null || operator === "="){
         operator = op;
         display_first_res.textContent = first_num + " " + operator + " ";
+        console.log(operator);
         present_num = null;
     } else{
         operator = op;
-        display_first_res.textContent = display_first_res.textContent.slice(0, -1) + operator + " ";
+        console.log(operator);
+        display_first_res.textContent = display_first_res.textContent.slice(0, -2) + operator + " ";
     }
 
     //   assigning the clicked operator value to the var 'operator'
