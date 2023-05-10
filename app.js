@@ -65,8 +65,18 @@ function retrieveOperator(op){
             first_num = parseFloat(operate(operator, first_num, present_num)); 
             // first_num = parseFloat(first_num);
     }
+
+    if(operator === null || operator === "="){
+        operator = op;
+        display_first_res.textContent = first_num + " " + operator + " ";
+        present_num = null;
+    } else{
+        operator = op;
+        display_first_res.textContent = display_first_res.textContent.slice(0, -1) + operator + " ";
+    }
+
     //   assigning the clicked operator value to the var 'operator'
-    operator = op;
+    // operator = op;
       //   showing the first clicked number on the display
     //   display_first_res.textContent = parseFloat(first_num);
       //   showing the first clicked number on the display along with the clicked operator
@@ -82,8 +92,9 @@ function retrieveOperator(op){
         display_present_res.innerHTML = "";
       } else {
         // Otherwise, show the first clicked number on the display along with the clicked operator
-        present_num = "";
-        display_first_res.textContent = first_num + " " + operator + " ";
+        // console.log(typeof(present_num));
+        // present_num = null;
+        // display_first_res.textContent = first_num + " " + operator + " ";
         display_present_res.innerHTML = "";
       }
   }
