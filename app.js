@@ -60,7 +60,6 @@ function retrieveOperator(op){
       //   We allow another number to be clicked by clearing the present number variable
     //   console.log(first_num);
     //   display_present_res.innerHTML = "0";
-
     if (operator === "=") {
         // If equals button is clicked, show the result
         present_num = null;
@@ -77,19 +76,34 @@ function retrieveOperator(op){
   function operate(operator, first_num, second_num){
     switch(operator){
         case "+":
-            result = add(first_num, second_num);
+            if(second_num === undefined || second_num === null){
+                second_num = 0;
+            }
+            var result = add(first_num, second_num);
             break;
         case "-":
-            result = subtract(first_num, second_num);
+            if(second_num === undefined || second_num === null){
+                second_num = 0;
+            }
+            var result = subtract(first_num, second_num);
             break;
         case "*":
-            result = multiply(first_num, second_num);
+            if(second_num === undefined || second_num === null){
+                second_num = 0;
+            }
+            var result = multiply(first_num, second_num);
             break;
         case "÷":
-            result = divide(first_num, second_num);
+            if(second_num === undefined || second_num === null){
+                second_num = 0;
+            }
+            var result = divide(first_num, second_num);
             break;
         case "%":
-            result = mod(first_num, second_num);
+            if(second_num === undefined || second_num === null){
+                second_num = 0;
+            }
+            var result = mod(first_num, second_num);
             break;
     }
     result = Math.round(result * 100) / 100;
