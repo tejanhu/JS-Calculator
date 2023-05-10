@@ -92,6 +92,7 @@ function retrieveOperator(op){
             result = mod(first_num, second_num);
             break;
     }
+    result = Math.round(result * 100) / 100;
     return result;
 }
 
