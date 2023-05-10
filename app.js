@@ -44,7 +44,8 @@ function retrieveOperator(op){
         first_num = parseFloat(present_num);
         //  first_num = parseFloat(first_num);
         console.log(first_num);
-    } else if(present_num != null){ // Otherwise it means we're dealing with the next number
+    } 
+    else if(present_num != null){ // Otherwise it means we're dealing with the next number
             first_num = parseFloat(operate(operator, first_num, present_num)); 
             // first_num = parseFloat(first_num);
     }
@@ -53,11 +54,23 @@ function retrieveOperator(op){
       //   showing the first clicked number on the display
     //   display_first_res.textContent = parseFloat(first_num);
       //   showing the first clicked number on the display along with the clicked operator
-      present_num = '';
-      display_first_res.textContent = first_num + ' ' + operator + ' ';
+    //   present_num = '';
+    //   display_first_res.textContent = first_num + ' ' + operator + ' ';
       //   We allow another number to be clicked by clearing the present number variable
-      console.log(first_num);
+    //   console.log(first_num);
     //   display_present_res.innerHTML = "0";
+
+    if (operator === "=") {
+        // If equals button is clicked, show the result
+        present_num = null;
+        display_first_res.textContent = first_num;
+        display_present_res.innerHTML = "";
+      } else {
+        // Otherwise, show the first clicked number on the display along with the clicked operator
+        present_num = "";
+        display_first_res.textContent = first_num + " " + operator + " ";
+        display_present_res.innerHTML = "";
+      }
   }
 
   function operate(operator, first_num, second_num){
@@ -119,6 +132,30 @@ clear_btn.addEventListener("click", function(){
 
 equals_btn.addEventListener("click", function () {
 
+    if (operator !== null && present_num !== '') {
+        var result = parseFloat(operate(operator, parseFloat(first_num), parseFloat(present_num)));
+        display_first_res.textContent = result;
+        present_num = '';
+        first_num = result;
+        operator = "";
+    }
+
+   
+
+    // if (display_first_res.textContent !== "" && first_num !== null && operator_btns.textContent !== "") {
+    //     equals_btn.disabled = false;
+    //     var result = operate(operator, first_num, present_num);
+    //     display_present_res.textContent = result;
+    //     display_first_res.textContent = "";
+    //     first_num = result;
+    //     operator = null;
+    //     equals_btn.disabled = true;
+    // }else{
+    //     equals_btn.disabled = true;
+    //     clear_btn.click();
+    //     alert("Invalid operation. Please try again");
+    // }
+
     // if (display_first_res !== null && first_num !== null && operator_btns !== "") {
     //     equals_btn.disabled = false;
     //     retrieveOperator();
@@ -127,22 +164,21 @@ equals_btn.addEventListener("click", function () {
     //     clear_btn.click();
     //     alert("Invalid operation. Please try again");
     // }
-    if(first_num === null || operator === null || present_num === null){
-        equals_btn.disabled = true;
-        // retrieveOperator();
-    }
+    // if(first_num === null || operator === null || present_num === null){
+    //     equals_btn.disabled = true;
+    // }
 
-    let res = operate(operator, first_num, present_num);
+    // let res = operate(operator, first_num, present_num);
 
-    if(res === undefined){
-        alert("Invalid operation. Please try again");
-        equals_btn.disabled = true;
-        clear_btn.click();
-        return;
-    }
+    // if(res === undefined){
+    //     alert("Invalid operation. Please try again");
+    //     equals_btn.disabled = true;
+    //     clear_btn.click();
+    //     return;
+    // }
 
-    display_first_res.textContent = res;
-    present_num = res;
-    operator = null;
+    // display_first_res.textContent = res;
+    // present_num = res;
+    // operator = null;
 });
 
