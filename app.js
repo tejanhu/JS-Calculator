@@ -65,7 +65,6 @@ function retrieveOperator(op){
             first_num = parseFloat(operate(operator, first_num, present_num)); 
             // first_num = parseFloat(first_num);
     }
-
     if(operator === null || operator === "="){
         operator = op;
         display_first_res.textContent = first_num + " " + operator + " ";
@@ -74,7 +73,7 @@ function retrieveOperator(op){
     } else{
         operator = op;
         console.log(operator);
-        display_first_res.textContent = display_first_res.textContent.slice(0, -2) + operator + " ";
+        display_first_res.textContent = display_first_res.textContent.slice(0, -1) + operator + " ";
     }
 
     //   assigning the clicked operator value to the var 'operator'
@@ -104,31 +103,31 @@ function retrieveOperator(op){
   function operate(operator, first_num, second_num){
     switch(operator){
         case "+":
-            if(second_num === undefined || second_num === null){
+            if(second_num === undefined || second_num === null || second_num === NaN){
                 second_num = 0;
             }
             var result = add(first_num, second_num);
             break;
         case "-":
-            if(second_num === undefined || second_num === null){
+            if(second_num === undefined || second_num === null || second_num === NaN){
                 second_num = 0;
             }
             var result = subtract(first_num, second_num);
             break;
         case "*":
-            if(second_num === undefined || second_num === null){
+            if(second_num === undefined || second_num === null || second_num === NaN){
                 second_num = 0;
             }
             var result = multiply(first_num, second_num);
             break;
         case "÷":
-            if(second_num === undefined || second_num === null){
+            if(second_num === undefined || second_num === null || second_num === NaN){
                 second_num = 0;
             }
             var result = divide(first_num, second_num);
             break;
         case "%":
-            if(second_num === undefined || second_num === null){
+            if(second_num === undefined || second_num === null || second_num === NaN){
                 second_num = 0;
             }
             var result = mod(first_num, second_num);
