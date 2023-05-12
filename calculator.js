@@ -114,17 +114,17 @@ operator_btns.forEach(btn => {
 
 function add(first_num, second_num){
     calculation = first_num + second_num;
-    return result;
+    return calculation;
 }
 
 function subtract(first_num, second_num){
     calculation = first_num - second_num;
-    return result;
+    return calculation;
 }
 
 function multiply(first_num, second_num){
     calculation = first_num * second_num;
-    return result;
+    return calculation;
 }
 
 function divide(first_num, second_num){
