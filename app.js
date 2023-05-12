@@ -70,11 +70,7 @@ function retrieveOperator(op){
         display_first_res.textContent = first_num + " " + operator + " ";
         console.log(operator);
         present_num = null;
-    } else{
-        operator = op;
-        console.log(operator);
-        display_first_res.textContent = display_first_res.textContent.slice(0, -1) + operator + " ";
-    }
+     } 
 
     //   assigning the clicked operator value to the var 'operator'
     // operator = op;
