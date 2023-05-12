@@ -57,7 +57,7 @@ function retrieveOperator(op){
     } 
     else if(present_num != null){ // Otherwise it means we're dealing with the next number
         current_result = operate(operator, parseFloat(current_result), parseFloat(present_num)); 
-            if(first_num == undefined){
+            if(first_num == null || first_num == undefined){
                 first_num = present_num;
                 console.log("first_num", first_num);
             }
