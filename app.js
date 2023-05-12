@@ -56,7 +56,7 @@ function retrieveOperator(op){
         console.log(first_num);
     } 
     else if(present_num != null){ // Otherwise it means we're dealing with the next number
-        current_result = operate(operator, parseFloat(current_result), parseFloat(present_num)); 
+        current_result = operate(operator, parseFloat(first_num), parseFloat(present_num)); 
             if(first_num == null || first_num == undefined){
                 first_num = present_num;
                 console.log("first_num", first_num);
@@ -89,23 +89,14 @@ function retrieveOperator(op){
   function operate(operator, first_num, second_num){
     switch(operator){
         case "+":
-            if(second_num === undefined || second_num === null || isNaN(second_num)){
-                second_num = 0;
-            }
             var result = parseFloat(add(first_num, second_num));
             result = Math.round(result * 100) / 100;
             break;
         case "-":
-            if(second_num === undefined || second_num === null || isNaN(second_num)){
-                second_num = 0;
-            }
             var result = parseFloat(subtract(first_num, second_num));
             result = Math.round(result * 100) / 100;
             break;
         case "*":
-            if(second_num === undefined || second_num === null || isNaN(second_num)){
-                second_num = 0;
-            }
             var result = parseFloat(multiply(first_num, second_num));
             result = Math.round(result * 100) / 100;
             break;
@@ -117,9 +108,6 @@ function retrieveOperator(op){
             }
             break;
         case "%":
-            if(second_num === undefined || second_num === null || isNaN(second_num)){
-                second_num = 0;
-            }
             var result = parseFloat(mod(first_num, second_num));
             result = Math.round(result * 100) / 100;
             break;
