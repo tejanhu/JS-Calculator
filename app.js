@@ -32,11 +32,11 @@ numBtns.forEach(btn => {
 });
 
 function retrieveDigit(num){
-    if(present_num === null){
-        present_num += parseFloat(num);
-    } else{
+    if (present_num === null) {
+        present_num = Number(num);
+      } else {
         present_num = parseFloat(present_num.toString() + num);
-    }
+      }
     // converting the number clicked on into float
     // present_num += parseFloat(num);
     // present_num += num;
@@ -62,9 +62,18 @@ function retrieveOperator(op){
         console.log(first_num);
     } 
     else if(present_num != null){ // Otherwise it means we're dealing with the next number
-            first_num = parseFloat(operate(operator, first_num, present_num)); 
+            first_num = operate(operator, parseFloat(first_num), parseFloat(present_num)); 
+            if(first_num == undefined){
+                first_num = present_num;
+                console.log("first_num", first_num);
+            }
+            present_num = null;
+            console.log(first_num);
+            operator = op;
             // first_num = parseFloat(first_num);
     }
+
+  
     if(operator === null || operator === "="){
         operator = op;
         display_first_res.textContent = first_num + " " + operator + " ";
@@ -85,13 +94,13 @@ function retrieveOperator(op){
     if (operator === "=") {
         // If equals button is clicked, show the result
         present_num = null;
-        display_first_res.textContent = first_num;
+        display_first_res.textContent =  Number(first_num);
         display_present_res.innerHTML = "";
       } else {
         // Otherwise, show the first clicked number on the display along with the clicked operator
         // console.log(typeof(present_num));
-        // present_num = null;
-        // display_first_res.textContent = first_num + " " + operator + " ";
+        present_num = null;
+        display_first_res.textContent = first_num + " " + operator + " ";
         display_present_res.innerHTML = "";
       }
   }
@@ -99,66 +108,92 @@ function retrieveOperator(op){
   function operate(operator, first_num, second_num){
     switch(operator){
         case "+":
-            if(second_num === undefined || second_num === null || second_num === NaN){
+            if(second_num === undefined || second_num === null || isNaN(second_num)){
                 second_num = 0;
             }
-            var result = add(first_num, second_num);
+            var result = parseFloat(add(first_num, second_num));
+            result = Math.round(result * 100) / 100;
             break;
         case "-":
-            if(second_num === undefined || second_num === null || second_num === NaN){
+            if(second_num === undefined || second_num === null || isNaN(second_num)){
                 second_num = 0;
             }
-            var result = subtract(first_num, second_num);
+            var result = parseFloat(subtract(first_num, second_num));
+            result = Math.round(result * 100) / 100;
             break;
         case "*":
-            if(second_num === undefined || second_num === null || second_num === NaN){
+            if(second_num === undefined || second_num === null || isNaN(second_num)){
                 second_num = 0;
             }
-            var result = multiply(first_num, second_num);
+            var result = parseFloat(multiply(first_num, second_num));
+            result = Math.round(result * 100) / 100;
             break;
         case "÷":
-            if(second_num === undefined || second_num === null || second_num === NaN){
-                second_num = 0;
+            var result = parseFloat(divide(first_num, second_num));
+            result = Math.round(result * 100) / 100;
+            if(isNaN(result)){
+                result = "";
             }
-            var result = divide(first_num, second_num);
             break;
         case "%":
-            if(second_num === undefined || second_num === null || second_num === NaN){
+            if(second_num === undefined || second_num === null || isNaN(second_num)){
                 second_num = 0;
             }
-            var result = mod(first_num, second_num);
+            var result = parseFloat(mod(first_num, second_num));
+            result = Math.round(result * 100) / 100;
             break;
     }
-    result = Math.round(result * 100) / 100;
+    
     return result;
 }
 
 function add(first_num, second_num){
+    if (!isNaN(first_num) && !isNaN(second_num)) {
     result = first_num + second_num;
+    result = Math.round(result * 100) / 100;
+    }
     return result;
 }
 
 function subtract(first_num, second_num){
+    if (!isNaN(first_num) && !isNaN(second_num)) {
     result = first_num - second_num;
+    result = Math.round(result * 100) / 100;
+    }
     return result;
 }
 
 function multiply(first_num, second_num){
+    if (!isNaN(first_num) && !isNaN(second_num)) {
     result = first_num * second_num;
+    result = Math.round(result * 100) / 100;
+    }
     return result;
 }
 
 function divide(first_num, second_num){
     if(first_num == 0 || second_num == 0){
-        result = "Can't divide by zero."
+        alert("Can't divide by zero.");
+        if(isNaN(first_num) || isNaN(second_num)){
+            result = "";
+            first_num = "";
+            second_num = "";
+            return;
+        }
     }else{
-        result = first_num / second_num;
+        if (!isNaN(first_num) && !isNaN(second_num)) {
+            result = first_num / second_num;
+            result = Math.round(result * 100) / 100;
+        }
     }
     return result;
 }
 
 function mod(first_num, second_num){
-    result = first_num % second_num;
+    if (!isNaN(first_num) && !isNaN(second_num)) {
+        result = first_num % second_num;
+        result = Math.round(result * 100) / 100;
+    }
     return result;
 }
 
@@ -180,7 +215,7 @@ clear_btn.addEventListener("click", function(){
 equals_btn.addEventListener("click", function () {
 
     if (operator !== null && present_num !== '') {
-        var result = parseFloat(operate(operator, parseFloat(first_num), parseFloat(present_num)));
+        var result = operate(operator, parseFloat(first_num), parseFloat(present_num));
         display_first_res.textContent = result;
         present_num = '';
         first_num = result;
