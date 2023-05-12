@@ -12,6 +12,7 @@ var first_num = null;
 var present_num = '';
 var operator = null;
 var result;
+var current_result = null;
 
 dec_btn.addEventListener('click', function(){
     alert("Decimal Functionality Coming Soon!");
@@ -37,13 +38,6 @@ function retrieveDigit(num){
       } else {
         present_num = parseFloat(present_num.toString() + num);
       }
-    // converting the number clicked on into float
-    // present_num += parseFloat(num);
-    // present_num += num;
-    // storing the number clicked on in the type of float 
-    // present_num = parseFloat(present_num);
-    // Adding the clicked number to the calculator display
-    // display_first_res.textContent = " ";
     display_first_res.textContent = present_num;
     display_first_res.style.color = "white";
 }
@@ -58,11 +52,11 @@ function retrieveOperator(op){
     // If operator is null, that means we're still dealing with the first number
     if(operator == null){
         first_num = parseFloat(present_num);
-        //  first_num = parseFloat(first_num);
+        current_result = first_num;
         console.log(first_num);
     } 
     else if(present_num != null){ // Otherwise it means we're dealing with the next number
-            first_num = operate(operator, parseFloat(first_num), parseFloat(present_num)); 
+        current_result = operate(operator, parseFloat(current_result), parseFloat(present_num)); 
             if(first_num == undefined){
                 first_num = present_num;
                 console.log("first_num", first_num);
@@ -70,7 +64,7 @@ function retrieveOperator(op){
             present_num = null;
             console.log(first_num);
             operator = op;
-            // first_num = parseFloat(first_num);
+            display_first_res.textContent = current_result + " " + operator + " ";
     }
 
   
@@ -81,24 +75,11 @@ function retrieveOperator(op){
         present_num = null;
      } 
 
-    //   assigning the clicked operator value to the var 'operator'
-    // operator = op;
-      //   showing the first clicked number on the display
-    //   display_first_res.textContent = parseFloat(first_num);
-      //   showing the first clicked number on the display along with the clicked operator
-    //   present_num = '';
-    //   display_first_res.textContent = first_num + ' ' + operator + ' ';
-      //   We allow another number to be clicked by clearing the present number variable
-    //   console.log(first_num);
-    //   display_present_res.innerHTML = "0";
     if (operator === "=") {
-        // If equals button is clicked, show the result
         present_num = null;
         display_first_res.textContent =  Number(first_num);
         display_present_res.innerHTML = "";
       } else {
-        // Otherwise, show the first clicked number on the display along with the clicked operator
-        // console.log(typeof(present_num));
         present_num = null;
         display_first_res.textContent = first_num + " " + operator + " ";
         display_present_res.innerHTML = "";
@@ -221,46 +202,5 @@ equals_btn.addEventListener("click", function () {
         first_num = result;
         operator = "";
     }
-
-   
-
-    // if (display_first_res.textContent !== "" && first_num !== null && operator_btns.textContent !== "") {
-    //     equals_btn.disabled = false;
-    //     var result = operate(operator, first_num, present_num);
-    //     display_present_res.textContent = result;
-    //     display_first_res.textContent = "";
-    //     first_num = result;
-    //     operator = null;
-    //     equals_btn.disabled = true;
-    // }else{
-    //     equals_btn.disabled = true;
-    //     clear_btn.click();
-    //     alert("Invalid operation. Please try again");
-    // }
-
-    // if (display_first_res !== null && first_num !== null && operator_btns !== "") {
-    //     equals_btn.disabled = false;
-    //     retrieveOperator();
-    // }else{
-    //     equals_btn.disabled = true;
-    //     clear_btn.click();
-    //     alert("Invalid operation. Please try again");
-    // }
-    // if(first_num === null || operator === null || present_num === null){
-    //     equals_btn.disabled = true;
-    // }
-
-    // let res = operate(operator, first_num, present_num);
-
-    // if(res === undefined){
-    //     alert("Invalid operation. Please try again");
-    //     equals_btn.disabled = true;
-    //     clear_btn.click();
-    //     return;
-    // }
-
-    // display_first_res.textContent = res;
-    // present_num = res;
-    // operator = null;
 });
 
